@@ -44,7 +44,7 @@ def find_indifference_X(gamma, W0, gA, p_loss, G, alpha=0.5):
 
     # X must be between 0 and W0 to ensure W_loss > 0
     lower_X = 0.0
-    upper_X = W0 * 0.99  # Slightly less than W0 to avoid W_loss = 0
+    upper_X = W0 * 0.99  # slightly less than W0 to avoid W_loss = 0
 
     # root_scalar to find X where equation(X) = 0
     try:
@@ -60,7 +60,6 @@ def compute_indifference_across_alphas(gamma, W0, gA, p_loss, G, alpha_values):
     
     p_gain = 1 - p_loss
 
-    # Compute U_A once
     W_A = W0 + gA
     U_A = crra_utility(W_A, gamma)
 
@@ -71,7 +70,7 @@ def compute_indifference_across_alphas(gamma, W0, gA, p_loss, G, alpha_values):
             V_B = np.nan
             E_choice_B = np.nan
         else:
-            V_B = U_A  # By indifference condition
+            V_B = U_A  # by indifference condition
             E_choice_B = p_loss * (W0 - X) + p_gain * (W0 + G)
         results.append({
             'Alpha': alpha,
@@ -155,15 +154,46 @@ if __name__ == "__main__":
     color4 = 'brown'    
 
     compute_and_plot_indifference(gamma4, W0_4, gA4, p_loss4, G4, alpha_values, example_number=configuration, color=color4)
+    
     '''
     
-    gamma1 = 0       # relative risk aversion coefficient (gamma=1 for log utility)
+    gamma1 = 0.5       # relative risk aversion coefficient (gamma=1 for log utility)
     W0_1 = 1000         # starting wealth
     gA1 = 0          # guaranteed gain in choice A
     p_loss1 = 0.98     # probability of loss in choice B
     G1 = 1000          # gain prospect in choice B
-    configuration = 1
+    configuration = gamma1
+    color1 = 'blue'    
+    
+    compute_and_plot_indifference(gamma1, W0_1, gA1, p_loss1, G1, alpha_values, example_number=configuration, color=color1)
+    
+    gamma1 = 1       # relative risk aversion coefficient (gamma=1 for log utility)
+    W0_1 = 1000         # starting wealth
+    gA1 = 0          # guaranteed gain in choice A
+    p_loss1 = 0.98     # probability of loss in choice B
+    G1 = 1000          # gain prospect in choice B
+    configuration = gamma1
     color1 = 'black'    
+    
+    compute_and_plot_indifference(gamma1, W0_1, gA1, p_loss1, G1, alpha_values, example_number=configuration, color=color1)
+    
+    gamma1 = 1.5       # relative risk aversion coefficient (gamma=1 for log utility)
+    W0_1 = 1000         # starting wealth
+    gA1 = 0          # guaranteed gain in choice A
+    p_loss1 = 0.98     # probability of loss in choice B
+    G1 = 1000          # gain prospect in choice B
+    configuration = gamma1
+    color1 = 'purple'    
+    
+    compute_and_plot_indifference(gamma1, W0_1, gA1, p_loss1, G1, alpha_values, example_number=configuration, color=color1)
+
+    gamma1 = 2       # relative risk aversion coefficient (gamma=1 for log utility)
+    W0_1 = 1000         # starting wealth
+    gA1 = 0          # guaranteed gain in choice A
+    p_loss1 = 0.98     # probability of loss in choice B
+    G1 = 1000          # gain prospect in choice B
+    configuration = gamma1
+    color1 = 'red'    
     
     compute_and_plot_indifference(gamma1, W0_1, gA1, p_loss1, G1, alpha_values, example_number=configuration, color=color1)
 
