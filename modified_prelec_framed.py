@@ -217,3 +217,40 @@ if __name__ == "__main__":
     plt.xticks(alpha_values*2)
     plt.xlim(0,1)
     plt.show()
+
+#%%
+
+ # Define gammas from 0 to 3 in increments of 0.1
+    gammas = np.arange(0.0, 3.1, 0.1)
+    
+    # Define alphas from 0.05 to 1.0 in increments of 0.05
+    alpha_values_table = np.arange(0.05, 1.05, 0.05)
+    
+    # Initialize a dictionary to store indifference loss amounts for each gamma
+    indifference_table = {gamma: [] for gamma in gammas}
+    
+    # Iterate over gammas and alphas to compute X*
+    for gamma in gammas:
+        for alpha in alpha_values_table:
+            X_star = find_indifference_X(gamma, W0_1, gA1, p_loss1, G1, alpha)
+            indifference_table[gamma].append(X_star)
+    
+    # Create a DataFrame with alphas as index and gammas as columns
+    df_indifference = pd.DataFrame(indifference_table, index=alpha_values_table)
+    
+    # Rename the index and columns for clarity
+    df_indifference.index.name = 'Alpha'
+    df_indifference.columns.name = 'Gamma'
+    
+    # Round the X* values to two decimal places
+    df_indifference = df_indifference.round(2)
+    
+    # Save the DataFrame to a CSV file
+    df_indifference.to_csv('indifference_loss_amounts.csv')
+    
+    # Display the DataFrame
+    print("\nIndifference Loss Amounts Table:")
+    print(df_indifference)
+
+
+

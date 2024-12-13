@@ -186,7 +186,7 @@ if __name__ == "__main__":
     color1 = 'purple'    
     
     compute_and_plot_indifference(gamma1, W0_1, gA1, p_loss1, G1, alpha_values, example_number=configuration, color=color1)
-
+    
     gamma1 = 2       # relative risk aversion coefficient (gamma=1 for log utility)
     W0_1 = 1000         # starting wealth
     gA1 = 0          # guaranteed gain in choice A
@@ -196,6 +196,7 @@ if __name__ == "__main__":
     color1 = 'red'    
     
     compute_and_plot_indifference(gamma1, W0_1, gA1, p_loss1, G1, alpha_values, example_number=configuration, color=color1)
+
 
     # finalize and display the plot
     plt.title('Indifference Loss Amount (X*) vs. Prelec\'s Alpha (α)')
